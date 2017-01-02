@@ -37,6 +37,7 @@ def changeCity(btn) :
     City = app.getEntry("Set City")
     current = open("currentcity",'w')
     current.write(City)
+    current.close()
     app.removeEntry("Set City")
     app.removeButton("Confirm")
     build()
