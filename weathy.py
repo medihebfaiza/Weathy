@@ -4,14 +4,14 @@ from appJar import gui
 
 APIKey = "APPID=affd60b454bf07754ead0c6265738496"
 icons = {
-    "Clouds" : "icons/cloud.png",
-    "Clear" : "icons/sun.png",
-    "Mist" : "icons/cloud.png",
-    "Rain" : "icons/rain.png",
-    "Snow" : "icons/snow.png",
-    "Thunderstorm" : "icons/storm.png",
-    "Thunderstorm" : "icons/storm.png",
-    "Drizzle" : "icons/rain.png"
+    "Clouds" : "icons/cloud.gif",
+    "Clear" : "icons/sun.gif",
+    "Mist" : "icons/cloud.gif",
+    "Rain" : "icons/rain.gif",
+    "Snow" : "icons/snow.gif",
+    "Thunderstorm" : "icons/storm.gif",
+    "Thunderstorm" : "icons/storm.gif",
+    "Drizzle" : "icons/rain.gif"
 }
 
 def update(btn) :
@@ -39,26 +39,28 @@ def changeCity(btn) :
     current.write(City)
     app.removeEntry("Set City")
     app.removeButton("Confirm")
-    app.addLabel("currentcity", City)
-    app.addImage("icon","icons/sun.png")
-    app.addLabel("description", text=None)
-    app.addLabel("temp", text=None)
-    app.addButton("Update", update)
-    update(0)
+    build()
 
+def build() :
+        app.addLabel("currentcity", loadCurrentCity())
+        app.addImage("icon","icons/sun.gif") #icon by default
+        app.zoomImage("icon", -5)
+        app.addLabel("description", text=None)
+        app.addLabel("temp", text=None)
+        app.addHorizontalSeparator()
+        app.addButton("Update", update)
+        update(0)
+
+#GUI Options
 app = gui()
 app.setTitle("Weathy")
+app.setIcon("icons/Weathy.ico")
 app.setBg("White")
-app.addImage("logo", "Weathy_logo.png")
+app.addImage("logo", "icons/Weathy_logo.gif")
 app.zoomImage("logo", -2)
 
 if loadCurrentCity() :
-    app.addLabel("currentcity", loadCurrentCity())
-    app.addImage("icon","icons/sun.png")
-    app.addLabel("description", text=None)
-    app.addLabel("temp", text=None)
-    app.addButton("Update", update)
-    update(0)
+    build()
 else :
     app.addLabelEntry("Set City")
     app.addButton("Confirm", changeCity)
