@@ -1,5 +1,5 @@
 #Weathy
-![Logo](Weathy_logo.png)
+![Logo](icons/Weathy_logo.png)
 
 A simple Python Weather Program using python requests library and openweathermap API.
 
